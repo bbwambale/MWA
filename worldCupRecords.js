@@ -11,5 +11,6 @@ function* getAllDetails(){
            console.log(teamInfo);
 }
 
+
 const dataGen = getAllDetails();
 dataGen.next();
