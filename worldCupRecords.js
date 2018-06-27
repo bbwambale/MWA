@@ -35,16 +35,25 @@ function myAjax(url) {
    return teamsdata;
    }
 
-var  mydata = myAjax('https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json');
-var  myTeam = "Germany";
+
+
+   document.getElementById("myBtn").addEventListener("click", function(){
+    var  mydata = myAjax('https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json');
+    var  myTeam = document.getElementById('textInput').value;
 
 from(mydata)
    .pipe(
-       flatMap((obj) => obj.stadiums),
+       flatMap((obj) => obj.teams),
        map(function(sta) {
+         if(sta.name == myTeam){
         let li = createNode('li')
-        li.innerHTML = `${sta.name} ${sta.city}`;
+        li.innerHTML = `${sta.fifaCode} ${sta.id}`;
         append(ul, li);
-      })
+         }
+      }),
    )
-   .subscribe()
+   .subscribe(
+    
+   )
+    
+});
